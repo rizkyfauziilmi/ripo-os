@@ -1,8 +1,9 @@
 import { ONE_DAY } from "@/constant/time";
 import { useEffect, useState } from "react";
 import { Calendar } from "../ui/calendar";
+import { id } from "date-fns/locale";
 
-function CalendarTooltip() {
+function CalendarPopover() {
   const [date, setDate] = useState<Date>(new Date());
 
   useEffect(() => {
@@ -11,7 +12,14 @@ function CalendarTooltip() {
     }, ONE_DAY);
   }, []);
 
-  return <Calendar today={date} mode="default" />;
+  return (
+    <Calendar
+      locale={id}
+      firstWeekContainsDate={1}
+      today={date}
+      mode="default"
+    />
+  );
 }
 
-export default CalendarTooltip;
+export default CalendarPopover;

@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { ONE_SECOND } from "@/constant/time";
-import CalendarTooltip from "./calendar-tooltip";
+import CalendarPopover from "./calendar-popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 function Clock() {
   const [nowDate, setNowDate] = useState<Date>(new Date());
@@ -21,23 +20,18 @@ function Clock() {
   }, []);
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>
-          <small className="text-sm font-medium leading-none">
-            {nowDate.toLocaleTimeString()}
-          </small>
-        </TooltipTrigger>
-        <TooltipContent
-          withArrow={false}
-          sideOffset={20}
-          side="bottom"
-          align="center"
-        >
-          <CalendarTooltip />
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Popover>
+      <PopoverTrigger>
+        <small className="text-sm font-medium leading-none hover:bg-muted px-2 py-1 cursor-pointer rounded-full">
+          {nowDate.toLocaleTimeString(undefined, {
+            hour12: false,
+          })}
+        </small>
+      </PopoverTrigger>
+      <PopoverContent side="bottom" align="center" sideOffset={20}>
+        <CalendarPopover />
+      </PopoverContent>
+    </Popover>
   );
 }
 
