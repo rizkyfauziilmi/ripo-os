@@ -1,6 +1,6 @@
-import LeftTopbar from "../topbar/left-topbar";
-import MiddleTopbar from "../topbar/middle-topbar";
-import RightTopbar from "../topbar/right-topbar";
+import LeftTopbar from "./left-topbar";
+import MiddleTopbar from "./middle-topbar";
+import RightTopbar from "./right-topbar";
 
 function Topbar() {
   return (
