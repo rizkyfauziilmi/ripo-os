@@ -1,15 +1,8 @@
 import type { SVGProps } from "react";
 const Alacritty = (props: SVGProps<SVGSVGElement>) => (
   <svg
-    xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:cc="http://creativecommons.org/ns#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:svg="http://www.w3.org/2000/svg"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
     width="1em"
     height="1em"
     viewBox="0 0 64 64"
@@ -19,302 +12,10 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
       fillRule: "evenodd",
       strokeLinejoin: "round",
       strokeMiterlimit: 1.41420996,
-      enableBackground: "new",
     }}
     id="svg3967"
-    sodipodi:docname="alacritty.svg"
-    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
     {...props}
   >
-    <metadata id="metadata3971">
-      <rdf:RDF>
-        <cc:Work rdf:about="">
-          <dc:format>{"image/svg+xml"}</dc:format>
-          <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-          <dc:title />
-        </cc:Work>
-      </rdf:RDF>
-    </metadata>
-    <sodipodi:namedview
-      pagecolor="#1b1b1b"
-      bordercolor="#666666"
-      borderopacity={1}
-      objecttolerance={10}
-      gridtolerance={10}
-      guidetolerance={10}
-      inkscape:pageopacity={1}
-      inkscape:pageshadow={2}
-      inkscape:window-width={1912}
-      inkscape:window-height={2051}
-      id="namedview3969"
-      showgrid="true"
-      inkscape:pagecheckerboard="false"
-      showguides="false"
-      inkscape:guide-bbox="true"
-      inkscape:measure-start="35.0647,26.4746"
-      inkscape:measure-end="23.3668,17.3739"
-      inkscape:lockguides="false"
-      inkscape:snap-page="false"
-      inkscape:zoom={16.123347}
-      inkscape:cx={29.021205}
-      inkscape:cy={30.792291}
-      inkscape:window-x={1912}
-      inkscape:window-y={48}
-      inkscape:window-maximized={0}
-      inkscape:current-layer="layer1"
-      inkscape:snap-smooth-nodes="false"
-      fit-margin-top={0}
-      fit-margin-left={0}
-      fit-margin-right={0}
-      fit-margin-bottom={0}
-      showborder="true"
-      inkscape:showpageshadow="false"
-      inkscape:object-nodes="true"
-      viewbox-y={-0.5}
-      inkscape:snap-to-guides="false"
-      inkscape:snap-grids="false"
-    >
-      <sodipodi:guide
-        position="52,8.2500022"
-        orientation="1,0"
-        id="guide959"
-        inkscape:locked="false"
-        inkscape:label="A Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,48.250002"
-        orientation="0,1"
-        id="guide961"
-        inkscape:locked="false"
-        inkscape:label="A Top"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="14,8.2500022"
-        orientation="1,0"
-        id="guide963"
-        inkscape:locked="false"
-        inkscape:label="A Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,24.750002"
-        orientation="1,0"
-        id="guide965"
-        inkscape:locked="false"
-        inkscape:label="Vertical Center"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,24.750002"
-        orientation="0,1"
-        id="guide967"
-        inkscape:locked="false"
-        inkscape:label="Horizontal Center"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="28.813,21.500002"
-        orientation="1,0"
-        id="guide969"
-        inkscape:locked="false"
-        inkscape:label="Flame Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="37.187,21.500002"
-        orientation="1,0"
-        id="guide971"
-        inkscape:locked="false"
-        inkscape:label="Flame Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="29.5,48.250002"
-        orientation="1,0"
-        id="guide973"
-        inkscape:locked="false"
-        inkscape:label="A Top Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="36.5,48.250002"
-        orientation="1,0"
-        id="guide975"
-        inkscape:locked="false"
-        inkscape:label="A Top Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="20.5,8.2500022"
-        orientation="1,0"
-        id="guide977"
-        inkscape:locked="false"
-        inkscape:label="Width A Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="45.5,8.2500022"
-        orientation="1,0"
-        id="guide979"
-        inkscape:locked="false"
-        inkscape:label="Width A Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="14,8.2500022"
-        orientation="0,1"
-        id="guide981"
-        inkscape:locked="false"
-        inkscape:label="A Bottom"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,12.688002"
-        orientation="0,1"
-        id="guide983"
-        inkscape:locked="false"
-        inkscape:label="Flame Curve Intersect"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="34.5,12.688002"
-        orientation="1,0"
-        id="guide985"
-        inkscape:locked="false"
-        inkscape:label="Right Flame Curve"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="31.5,12.688002"
-        orientation="1,0"
-        id="guide987"
-        inkscape:locked="false"
-        inkscape:label="Left Flame Curve"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,15.855002"
-        orientation="-0.93245628,0.36128283"
-        id="guide3628"
-        inkscape:locked="false"
-        inkscape:label="Inner Flame Angle Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,15.855002"
-        orientation="-0.93245628,-0.36128283"
-        id="guide3630"
-        inkscape:locked="false"
-        inkscape:label="Inner Flame Angle Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,21.500002"
-        orientation="0,1"
-        id="guide3644"
-        inkscape:locked="false"
-        inkscape:label="Flame Center"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="29.813,24.080519"
-        orientation="1,0"
-        id="guide3646"
-        inkscape:locked="false"
-        inkscape:label="Inner Flame Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="36.187,24.080519"
-        orientation="1,0"
-        id="guide3648"
-        inkscape:locked="false"
-        inkscape:label="Inner Flame Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,32.305002"
-        orientation="0,1"
-        id="guide3650"
-        inkscape:locked="false"
-        inkscape:label="Flame Top"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,5.0000022"
-        orientation="0,1"
-        id="guide3652"
-        inkscape:locked="false"
-        inkscape:label="Flame Bottom"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,53.750002"
-        orientation="0,1"
-        id="guide3936"
-        inkscape:locked="false"
-        inkscape:label="Term Top"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="33,3.0000022"
-        orientation="0,1"
-        id="guide3938"
-        inkscape:locked="false"
-        inkscape:label="Term Bottom"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="63,24.750002"
-        orientation="1,0"
-        id="guide3940"
-        inkscape:locked="false"
-        inkscape:label="Term Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="3.0000001,24.750002"
-        orientation="1,0"
-        id="guide3942"
-        inkscape:locked="false"
-        inkscape:label="Term Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="1.4777768e-07,56.750002"
-        orientation="0,1"
-        id="guide15457"
-        inkscape:locked="false"
-        inkscape:label="Outline Top"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="1.4777768e-07,56.750002"
-        orientation="1,0"
-        id="guide15459"
-        inkscape:locked="false"
-        inkscape:label="Outline Left"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="66,2.2454491e-06"
-        orientation="0,1"
-        id="guide15461"
-        inkscape:locked="false"
-        inkscape:label="Outline Bottom"
-        inkscape:color="rgb(0,0,255)"
-      />
-      <sodipodi:guide
-        position="66,2.2454491e-06"
-        orientation="1,0"
-        id="guide15463"
-        inkscape:locked="false"
-        inkscape:label="Outline Right"
-        inkscape:color="rgb(0,0,255)"
-      />
-    </sodipodi:namedview>
     <defs id="defs3965">
       <linearGradient
         id="red-orange"
@@ -342,7 +43,7 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
           id="stop928"
         />
       </linearGradient>
-      <linearGradient id="linearGradient5362" osb:paint="solid">
+      <linearGradient id="linearGradient5362">
         <stop
           style={{
             stopColor: "#aaaaaa",
@@ -353,7 +54,6 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
         />
       </linearGradient>
       <linearGradient
-        inkscape:collect="always"
         xlinkHref="#red-orange"
         id="linearGradient11006"
         x1={19.0625}
@@ -365,7 +65,6 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
       />
       <clipPath clipPathUnits="userSpaceOnUse" id="clipPath3639">
         <path
-          inkscape:connector-curvature={0}
           id="path3641"
           d="M 14.813062,26.75 19,15.945 23.186938,26.75 19,43.25 Z"
           style={{
@@ -381,9 +80,8 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
         />
       </clipPath>
       <filter
-        inkscape:collect="always"
         style={{
-          colorInterpolationFilters: "sRGB",
+          colorInterpolation: "sRGB",
         }}
         id="filter1378"
         x={-0.096199476}
@@ -391,28 +89,19 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
         y={-0.074239448}
         height={1.1484789}
       >
-        <feGaussianBlur
-          inkscape:collect="always"
-          stdDeviation={1.0020779}
-          id="feGaussianBlur1380"
-        />
+        <feGaussianBlur stdDeviation={1.0020779} id="feGaussianBlur1380" />
       </filter>
     </defs>
     <g
-      inkscape:groupmode="layer"
       id="layer1"
-      inkscape:label="Main"
       style={{
         display: "inline",
       }}
       transform="translate(-16,35.820639)"
-      sodipodi:insensitive="true"
     >
       <g id="g4199">
         <path
           clipPath="none"
-          sodipodi:nodetypes="ccccccc"
-          inkscape:connector-curvature={0}
           id="path5352"
           d="M 43.566236,2.9721345 42.175119,6.3426951 C 45.913195,17.853356 45.913195,17.853356 48,27.894557 50.086805,17.853356 50.086805,17.853356 53.824881,6.3426951 L 52.433764,2.9721345 48,-7.7705098 Z"
           style={{
@@ -431,8 +120,6 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
           }}
         />
         <path
-          sodipodi:nodetypes="cccccccc"
-          inkscape:connector-curvature={0}
           id="path5336"
           d="m 43.09342,-32.960595 h 9.81316 l 21.729148,53.92852 H 65.523505 L 48,-20.221038 30.476495,20.967925 h -9.112223 z"
           style={{
@@ -440,7 +127,7 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
             fill: "url(#linearGradient11006)",
             fillOpacity: 1,
             fillRule: "evenodd",
-            stroke: "url(#linearGradient10962)",
+            stroke: "none",
             strokeWidth: 0,
             strokeLinecap: "butt",
             strokeLinejoin: "miter",
@@ -471,8 +158,6 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
           }}
           d="M 19,32.395 31.5,0 6.5,0.13313911 Z"
           id="path9580"
-          inkscape:connector-curvature={0}
-          sodipodi:nodetypes="cccc"
         />
       </g>
     </g>
