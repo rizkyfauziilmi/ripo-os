@@ -28,7 +28,7 @@ function Dock() {
 
   return (
     <div className="flex items-center w-fit flex-1">
-      <div className="ml-2 flex flex-col justify-center gap-4 px-2 rounded-md py-4 bg-background/80">
+      <div className="ml-2 flex flex-col justify-center gap-4 px-2 rounded-md py-4 bg-background/80 border-[1.5px]">
         <TooltipProvider>
           {Array.from(icon).map(([key, IconComponent]) => (
             <DockAppIcon app={key} icon={IconComponent} />
