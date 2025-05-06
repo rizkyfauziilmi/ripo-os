@@ -6,6 +6,7 @@ import Gmail from "../icons/gmail";
 import Spotify from "../icons/spotify";
 import WhatsApp from "../icons/whatsapp";
 import ZenBrowser from "../icons/zen";
+import { FolderOpen } from "lucide-react";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
 import DockAppIcon from "./dock-app-icon";
@@ -17,13 +18,14 @@ import DockAppIcon from "./dock-app-icon";
 
 function Dock() {
   const icon: Map<string, () => JSX.Element> = new Map([
-    ["zen", () => <ZenBrowser className="size-8" />],
-    ["alacritty", () => <Alacritty className="size-8" />],
-    ["github", () => <GitHub className="size-8" />],
-    ["discord", () => <Discord className="size-8" />],
-    ["whatsapp", () => <WhatsApp className="size-8" />],
-    ["spotify", () => <Spotify className="size-8" />],
-    ["gmail", () => <Gmail className="size-8" />],
+    ["Zen", () => <ZenBrowser className="size-8" />],
+    ["Alacritty", () => <Alacritty className="size-8" />],
+    ["File Explorer", () => <FolderOpen className="size-8 fill-gray-400" />],
+    ["Whatsapp", () => <WhatsApp className="size-8" />],
+    ["Github", () => <GitHub className="size-8" />],
+    ["Discord", () => <Discord className="size-8" />],
+    ["Spotify", () => <Spotify className="size-8" />],
+    ["Gmail", () => <Gmail className="size-8" />],
   ]);
 
   return (
