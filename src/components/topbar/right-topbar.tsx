@@ -22,7 +22,7 @@ function RightTopbar() {
           side="bottom"
           className="m-0 p-2"
           align="end"
-          sideOffset={15}
+          sideOffset={SIDE_OFFSET}
         >
           <RightSheetBento />
         </PopoverContent>
