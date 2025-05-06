@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 
 interface DockAppIconProps {
   app: string;
-  icon: () => JSX.Element;
+  icon: JSX.Element;
 }
 
 function DockAppIcon({ app, icon }: DockAppIconProps) {
@@ -16,7 +16,7 @@ function DockAppIcon({ app, icon }: DockAppIconProps) {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button size="icon" className="size-12" variant="ghost">
-          {icon()}
+          {icon}
         </Button>
       </TooltipTrigger>
       <TooltipContent

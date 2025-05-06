@@ -17,15 +17,15 @@ import DockAppIcon from "./dock-app-icon";
 // }
 
 function Dock() {
-  const icon: Map<string, () => JSX.Element> = new Map([
-    ["Zen", () => <ZenBrowser className="size-8" />],
-    ["Alacritty", () => <Alacritty className="size-8" />],
-    ["File Explorer", () => <FolderOpen className="size-8 fill-gray-400" />],
-    ["Whatsapp", () => <WhatsApp className="size-8" />],
-    ["Github", () => <GitHub className="size-8" />],
-    ["Discord", () => <Discord className="size-8" />],
-    ["Spotify", () => <Spotify className="size-8" />],
-    ["Gmail", () => <Gmail className="size-8" />],
+  const icon: Map<string, JSX.Element> = new Map([
+    ["Zen", <ZenBrowser className="size-8" />],
+    ["Alacritty", <Alacritty className="size-8" />],
+    ["File Explorer", <FolderOpen className="size-8 fill-gray-400" />],
+    ["Whatsapp", <WhatsApp className="size-8" />],
+    ["Github", <GitHub className="size-8" />],
+    ["Discord", <Discord className="size-8" />],
+    ["Spotify", <Spotify className="size-8" />],
+    ["Gmail", <Gmail className="size-8" />],
   ]);
 
   return (

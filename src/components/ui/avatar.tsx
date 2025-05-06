@@ -38,13 +38,17 @@ function AvatarImage({
 
 function AvatarFallback({
   className,
+  isRoundedSquare = false,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback> & {
+  isRoundedSquare?: boolean;
+}) {
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "bg-muted flex size-full items-center justify-center rounded-full",
+        isRoundedSquare ? "rounded-md" : "rounded-full",
+        "bg-muted flex size-full items-center justify-center",
         className,
       )}
       {...props}
