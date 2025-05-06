@@ -1,12 +1,12 @@
 import { Button } from "../ui/button";
 import { Lock, Power, Settings } from "lucide-react";
 
-function UserInfo() {
+function UserInfo({ username }: { username: string }) {
   return (
     <div className="bg-muted/50 rounded-md p-2 h-[5.5rem] flex flex-col w-full gap-2">
       <UserControls />
       <p className="bg-popover text-center text-sm p-1 font-bold rounded-md">
-        rizkyfauziilmi
+        {username}
       </p>
     </div>
   );
