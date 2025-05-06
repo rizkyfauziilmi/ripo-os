@@ -18,7 +18,7 @@ import DockAppIcon from "./dock-app-icon";
 
 function Dock() {
   const icon: Map<string, JSX.Element> = new Map([
-    ["Zen", <ZenBrowser className="size-8" />],
+    ["Zen Browser", <ZenBrowser className="size-8" />],
     ["Alacritty", <Alacritty className="size-8" />],
     ["File Explorer", <FolderOpen className="size-8 fill-gray-400" />],
     ["Whatsapp", <WhatsApp className="size-8" />],
@@ -33,7 +33,7 @@ function Dock() {
       <div className="ml-2 flex flex-col justify-center gap-4 px-2 rounded-md py-4 bg-background/80 border-[1.5px]">
         <TooltipProvider>
           {Array.from(icon).map(([key, IconComponent]) => (
-            <DockAppIcon app={key} icon={IconComponent} />
+            <DockAppIcon key={key} app={key} icon={IconComponent} />
           ))}
         </TooltipProvider>
       </div>

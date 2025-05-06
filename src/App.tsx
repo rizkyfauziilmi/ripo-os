@@ -2,6 +2,7 @@ import Topbar from "./components/topbar/topbar";
 import { ThemeProvider } from "./components/theme-provider";
 import Dock from "./components/dock/dock";
 import bgImage from "./assets/wallpaper-1.png";
+import AppMenu from "./components/app-menu";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <div className="h-full flex flex-col">
           <Topbar />
           <Dock />
+          <AppMenu />
         </div>
       </div>
     </ThemeProvider>
