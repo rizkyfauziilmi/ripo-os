@@ -22,7 +22,7 @@ function Clock() {
   return (
     <Popover>
       <PopoverTrigger>
-        <small className="text-sm font-medium leading-none hover:bg-muted px-2 py-1 cursor-pointer rounded-md">
+        <small className="text-sm font-medium leading-none hover:bg-muted px-2 py-1 rounded-md">
           {nowDate.toLocaleTimeString(undefined, {
             hour12: false,
           })}

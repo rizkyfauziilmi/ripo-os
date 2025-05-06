@@ -4,7 +4,7 @@ function UserAvatar() {
   return (
     <Avatar isRoundedSquare className="size-[5.5rem]">
       <AvatarImage src="https://github.com/shadcn.png" />
-      <AvatarFallback>CN</AvatarFallback>
+      <AvatarFallback isRoundedSquare>CN</AvatarFallback>
     </Avatar>
   );
 }

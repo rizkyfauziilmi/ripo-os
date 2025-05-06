@@ -8,15 +8,15 @@ import { Button } from "../ui/button";
 
 interface DockAppIconProps {
   app: string;
-  icon: () => JSX.Element;
+  icon: JSX.Element;
 }
 
 function DockAppIcon({ app, icon }: DockAppIconProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button size="icon" className="size-12 cursor-pointer" variant="ghost">
-          {icon()}
+        <Button size="icon" className="size-12" variant="ghost">
+          {icon}
         </Button>
       </TooltipTrigger>
       <TooltipContent
