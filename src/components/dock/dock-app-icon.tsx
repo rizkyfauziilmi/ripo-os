@@ -15,7 +15,7 @@ function DockAppIcon({ app, icon }: DockAppIconProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button size="icon" className="size-12 cursor-pointer" variant="ghost">
+        <Button size="icon" className="size-12" variant="ghost">
           {icon()}
         </Button>
       </TooltipTrigger>
