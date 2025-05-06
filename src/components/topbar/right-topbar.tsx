@@ -6,6 +6,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import RightSheetBento from "./right-sheet-bento";
+import { SIDE_OFFSET } from "@/constant/style";
 
 function RightTopbar() {
   return (
