@@ -9,7 +9,7 @@ import {
   WINDOW_MIN_WIDTH,
   WINDOW_OFFSET_DETECTION,
 } from "@/constant/window";
-import useWindowStore, { Window } from "@/store/window-store";
+import { Window } from "@/store/window-store";
 
 interface WindowAppProps {
   window: Window;
@@ -17,11 +17,13 @@ interface WindowAppProps {
 }
 
 function WindowApp({ constraintsRef, window }: WindowAppProps) {
-  const { updateWindow } = useWindowStore();
-
   const draggableRef = useRef<HTMLDivElement>(null);
   const lastFrameRef = useRef<number>(null);
 
+  const [dimensions, setDimensions] = useState({
+    width: 800,
+    height: 600,
+  });
   const [resizing, setResizing] = useState(false);
   const [isTouchingBounds, setIsTouchingBounds] = useState({
     top: false,
@@ -66,7 +68,7 @@ function WindowApp({ constraintsRef, window }: WindowAppProps) {
 
       const startX = e.clientX;
       const startY = e.clientY;
-      const { width: startWidth, height: startHeight } = window.dimensions;
+      const { width: startWidth, height: startHeight } = dimensions;
 
       const onMouseMove = (moveEvent: MouseEvent) => {
         moveEvent.preventDefault();
@@ -110,11 +112,9 @@ function WindowApp({ constraintsRef, window }: WindowAppProps) {
           clearTimeout(lastFrameRef.current);
         }
 
-        updateWindow(window.id, {
-          dimensions: {
-            width: Math.max(WINDOW_MIN_WIDTH, newWidth),
-            height: Math.max(WINDOW_MIN_HEIGHT, newHeight),
-          },
+        setDimensions({
+          width: Math.max(WINDOW_MIN_WIDTH, newWidth),
+          height: Math.max(WINDOW_MIN_HEIGHT, newHeight),
         });
         setResizing(true);
       };
@@ -128,13 +128,7 @@ function WindowApp({ constraintsRef, window }: WindowAppProps) {
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
     },
-    [
-      constraintsRef,
-      updateBoundsState,
-      updateWindow,
-      window.dimensions,
-      window.id,
-    ],
+    [constraintsRef, dimensions, updateBoundsState],
   );
 
   const handleDrag = useCallback(() => {
@@ -157,8 +151,8 @@ function WindowApp({ constraintsRef, window }: WindowAppProps) {
       dragMomentum={false}
       onDrag={handleDrag}
       style={{
-        width: `${window.dimensions.width}px`,
-        height: `${window.dimensions.height}px`,
+        width: `${dimensions.width}px`,
+        height: `${dimensions.height}px`,
       }}
       className={cn(
         "absolute flex flex-col bg-background/95 rounded-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",

@@ -4,6 +4,7 @@ import Dock from "./components/dock/dock";
 import AppMenu from "./components/app-menu";
 import React, { useRef } from "react";
 import { Toaster } from "./components/ui/sonner";
+import { TooltipProvider } from "./components/ui/tooltip";
 const Windows = React.lazy(() => import("./components/window/windows"));
 
 function App() {
@@ -11,21 +12,26 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div
-        className="bg-cover h-screen w-screen overflow-hidden"
-        style={{
-          backgroundImage:
-            "url(https://w.wallhaven.cc/full/3l/wallhaven-3lxdy3.jpg)",
-        }}
-      >
-        <div className="h-full flex flex-col w-full" ref={windowConstraintsRef}>
-          <Topbar />
-          <Dock />
-          <Windows constraintsRef={windowConstraintsRef} />
+      <TooltipProvider>
+        <div
+          className="bg-cover h-screen w-screen overflow-hidden"
+          style={{
+            backgroundImage:
+              "url(https://w.wallhaven.cc/full/3l/wallhaven-3lxdy3.jpg)",
+          }}
+        >
+          <div
+            className="h-full flex flex-col w-full"
+            ref={windowConstraintsRef}
+          >
+            <Topbar />
+            <Dock />
+            <Windows constraintsRef={windowConstraintsRef} />
+          </div>
         </div>
-      </div>
-      <AppMenu />
-      <Toaster />
+        <AppMenu />
+        <Toaster />
+      </TooltipProvider>
     </ThemeProvider>
   );
 }
