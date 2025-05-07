@@ -24,8 +24,9 @@ export const useWindowStore = create<WindowState>((set) => ({
       );
       if (existingWindow) {
         if (existingWindow.isOpen) {
-          toast.error(`${appName} cannot be opened right now`, {
-            description: "Only one instance of each app is allowed at a time.",
+          toast.warning(`${appName} is already open`, {
+            description:
+              "You can only have one instance of this app running at a time.",
             position: "top-center",
             style: { marginTop: "30px" },
           });
