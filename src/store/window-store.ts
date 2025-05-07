@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { toast } from "sonner";
 
 export interface Window {
   id: string;
@@ -22,10 +23,17 @@ export const useWindowStore = create<WindowState>((set) => ({
         (window) => window.appName === appName,
       );
       if (existingWindow) {
+        if (existingWindow.isOpen) {
+          toast.error(`${appName} cannot be opened right now`, {
+            description: "Only one instance of each app is allowed at a time.",
+            position: "top-center",
+            style: { marginTop: "30px" },
+          });
+        }
         return {
           windows: state.windows.map((window) =>
             window.id === existingWindow.id
-              ? { ...window, isOpen: !window.isOpen }
+              ? { ...window, isOpen: true }
               : window,
           ),
         };

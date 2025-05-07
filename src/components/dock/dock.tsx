@@ -10,7 +10,7 @@ import { FolderOpen } from "lucide-react";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
 import DockAppIcon from "./dock-app-icon";
-import useWindowStore from "@/store/windowStore";
+import useWindowStore from "@/store/window-store";
 import AppIndicator from "./app-indicator";
 
 // interface DockProps {

@@ -1,4 +1,4 @@
-import useWindowStore, { Window } from "@/store/windowStore";
+import useWindowStore, { Window } from "@/store/window-store";
 import { motion } from "motion/react";
 
 interface WindowHeaderProps {

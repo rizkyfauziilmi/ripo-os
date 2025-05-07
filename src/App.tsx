@@ -5,8 +5,9 @@ import bgImage from "./assets/wallpaper-1.png";
 import AppMenu from "./components/app-menu";
 import WindowApp from "./components/window/window-app";
 import { useRef } from "react";
-import useWindowStore from "./store/windowStore";
+import useWindowStore from "./store/window-store";
 import { motion, AnimatePresence } from "framer-motion";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
   const { windows } = useWindowStore();
@@ -43,6 +44,7 @@ function App() {
         </div>
       </div>
       <AppMenu />
+      <Toaster />
     </ThemeProvider>
   );
 }
