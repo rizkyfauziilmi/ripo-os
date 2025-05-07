@@ -23,53 +23,13 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
     left: false,
   });
 
-  const handleResize = useCallback(
-    (e: React.MouseEvent, direction: string) => {
-      e.stopPropagation();
+  const updateBoundsState = useCallback(
+    (draggableRect: DOMRect, constraintsRect: DOMRect) => {
+      if (lastFrameRef.current) {
+        cancelAnimationFrame(lastFrameRef.current);
+      }
 
-      const startX = e.clientX;
-      const startY = e.clientY;
-      const { width: startWidth, height: startHeight } = dimensions;
-
-      const onMouseMove = (moveEvent: MouseEvent) => {
-        moveEvent.preventDefault();
-
-        let newWidth = startWidth;
-        let newHeight = startHeight;
-
-        if (!constraintsRef?.current || !draggableRef.current) return;
-
-        const constraintsRect = constraintsRef.current.getBoundingClientRect();
-        const draggableRect = draggableRef.current.getBoundingClientRect();
-
-        const maxWidth = constraintsRect.width;
-        const maxHeight = constraintsRect.height;
-
-        if (direction.includes("e")) {
-          newWidth = Math.min(
-            startWidth + (moveEvent.clientX - startX),
-            Math.min(constraintsRect.right - draggableRect.left, maxWidth),
-          );
-        }
-        if (direction.includes("w")) {
-          newWidth = Math.min(
-            startWidth - (moveEvent.clientX - startX),
-            Math.min(draggableRect.right - constraintsRect.left, maxWidth),
-          );
-        }
-        if (direction.includes("s")) {
-          newHeight = Math.min(
-            startHeight + (moveEvent.clientY - startY),
-            Math.min(constraintsRect.bottom - draggableRect.top, maxHeight),
-          );
-        }
-        if (direction.includes("n")) {
-          newHeight = Math.min(
-            startHeight - (moveEvent.clientY - startY),
-            Math.min(draggableRect.bottom - constraintsRect.top, maxHeight),
-          );
-        }
-
+      lastFrameRef.current = requestAnimationFrame(() => {
         const nextBounds = {
           top:
             draggableRect.top <= constraintsRect.top + WINDOW_OFFSET_DETECTION,
@@ -89,6 +49,56 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
             ? nextBounds
             : prev,
         );
+      });
+    },
+    [],
+  );
+
+  const handleResize = useCallback(
+    (e: React.MouseEvent, direction: string) => {
+      e.stopPropagation();
+
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const { width: startWidth, height: startHeight } = dimensions;
+
+      const onMouseMove = (moveEvent: MouseEvent) => {
+        moveEvent.preventDefault();
+
+        if (!constraintsRef?.current || !draggableRef.current) return;
+
+        const constraintsRect = constraintsRef.current.getBoundingClientRect();
+        const draggableRect = draggableRef.current.getBoundingClientRect();
+
+        let newWidth = startWidth;
+        let newHeight = startHeight;
+
+        if (direction.includes("e")) {
+          newWidth = Math.min(
+            startWidth + (moveEvent.clientX - startX),
+            constraintsRect.right - draggableRect.left,
+          );
+        }
+        if (direction.includes("w")) {
+          newWidth = Math.min(
+            startWidth - (moveEvent.clientX - startX),
+            draggableRect.right - constraintsRect.left,
+          );
+        }
+        if (direction.includes("s")) {
+          newHeight = Math.min(
+            startHeight + (moveEvent.clientY - startY),
+            constraintsRect.bottom - draggableRect.top,
+          );
+        }
+        if (direction.includes("n")) {
+          newHeight = Math.min(
+            startHeight - (moveEvent.clientY - startY),
+            draggableRect.bottom - constraintsRect.top,
+          );
+        }
+
+        updateBoundsState(draggableRect, constraintsRect);
 
         setDimensions({
           width: Math.max(100, newWidth),
@@ -106,43 +116,17 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
     },
-    [constraintsRef, dimensions],
+    [constraintsRef, dimensions, updateBoundsState],
   );
 
-  const handleDrag = () => {
+  const handleDrag = useCallback(() => {
     if (!draggableRef.current || !constraintsRef?.current) return;
 
-    if (lastFrameRef.current) {
-      cancelAnimationFrame(lastFrameRef.current);
-    }
+    const draggableRect = draggableRef.current.getBoundingClientRect();
+    const constraintsRect = constraintsRef.current.getBoundingClientRect();
 
-    lastFrameRef.current = requestAnimationFrame(() => {
-      const draggableRect = draggableRef.current!.getBoundingClientRect();
-      const constraintsRect = constraintsRef.current!.getBoundingClientRect();
-
-      const isTouchingLeft =
-        draggableRect.left <= constraintsRect.left + WINDOW_OFFSET_DETECTION;
-      const isTouchingRight =
-        draggableRect.right >= constraintsRect.right - WINDOW_OFFSET_DETECTION;
-      const isTouchingTop =
-        draggableRect.top <= constraintsRect.top + WINDOW_OFFSET_DETECTION;
-      const isTouchingBottom =
-        draggableRect.bottom >=
-        constraintsRect.bottom - WINDOW_OFFSET_DETECTION;
-
-      setIsTouchingBounds((prev) => {
-        const next = {
-          top: isTouchingTop,
-          right: isTouchingRight,
-          bottom: isTouchingBottom,
-          left: isTouchingLeft,
-        };
-
-        // Hanya update state jika berubah
-        return JSON.stringify(prev) !== JSON.stringify(next) ? next : prev;
-      });
-    });
-  };
+    updateBoundsState(draggableRect, constraintsRect);
+  }, [constraintsRef, updateBoundsState]);
 
   if (!constraintsRef) return null;
 
@@ -163,7 +147,6 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
       )}
     >
       <WindowHeader AppName={AppName} />
-
       <ResizeHandles
         isTouchingBounds={isTouchingBounds}
         handleResize={handleResize}
