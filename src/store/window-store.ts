@@ -5,7 +5,6 @@ export interface Window {
   id: string;
   isOpen: boolean;
   appName: string;
-  dimensions: { width: number; height: number };
 }
 
 interface WindowState {
@@ -50,7 +49,6 @@ export const useWindowStore = create<WindowState>((set) => ({
               id,
               isOpen: true,
               appName,
-              dimensions: { width: 800, height: 600 },
             },
           ],
         };
