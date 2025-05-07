@@ -27,6 +27,7 @@ import GitHub from "./icons/github";
 import Discord from "./icons/discord";
 import Spotify from "./icons/spotify";
 import Gmail from "./icons/gmail";
+import useWindowStore from "@/store/window-store";
 
 const applications = [
   { Icon: ZenBrowser, name: "Zen Browser" },
@@ -40,6 +41,7 @@ const applications = [
 ];
 
 function AppMenu() {
+  const { openWindow } = useWindowStore();
   const { appMenuOpen, setAppMenuOpen } = useDialogStore();
   const { theme, setTheme } = useTheme();
 
@@ -72,7 +74,10 @@ function AppMenu() {
 
         <CommandGroup heading="Applications">
           {applications.map(({ Icon, name, className }) => (
-            <CommandItem key={name}>
+            <CommandItem
+              key={name}
+              onSelect={() => handleSelect(() => openWindow(name))}
+            >
               <Icon className={className} />
               <span>{name}</span>
             </CommandItem>
@@ -84,7 +89,7 @@ function AppMenu() {
         <CommandGroup heading="Commands">
           <CommandItem onSelect={() => handleSelect(() => window.close())}>
             <PowerOff />
-            <span>Power Off</span>
+            <span>Shutdown</span>
           </CommandItem>
           <CommandItem
             onSelect={() => handleSelect(() => window.location.reload())}
