@@ -84,7 +84,6 @@ function ResizeHandles({
               ? position
               : offset,
             `absolute ${size}`,
-            "bg-red-500",
           )}
           onMouseDown={(e) => handleResize(e, dir)}
         />

@@ -10,6 +10,8 @@ import { FolderOpen } from "lucide-react";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
 import DockAppIcon from "./dock-app-icon";
+import useWindowStore from "@/store/windowStore";
+import AppIndicator from "./app-indicator";
 
 // interface DockProps {
 //   side?: "left" | "right" | "bottom";
@@ -28,13 +30,29 @@ function Dock() {
     ["Gmail", <Gmail className="size-8" />],
   ]);
 
+  const { openWindow, windows } = useWindowStore();
+
   return (
     <div className="flex items-center w-fit flex-1">
       <div className="ml-2 flex flex-col justify-center gap-4 px-2 rounded-md py-4 bg-background/80 border-[1.5px]">
         <TooltipProvider>
-          {Array.from(icon).map(([key, IconComponent]) => (
-            <DockAppIcon key={key} app={key} icon={IconComponent} />
-          ))}
+          {Array.from(icon).map(([key, IconComponent]) => {
+            const currentWindow = windows.find(
+              (window) => window.appName === key,
+            );
+            return (
+              <div key={key} className="relative">
+                {currentWindow && (
+                  <AppIndicator isActive={currentWindow.isOpen} />
+                )}
+                <DockAppIcon
+                  app={key}
+                  icon={IconComponent}
+                  onClick={() => openWindow(key)}
+                />
+              </div>
+            );
+          })}
         </TooltipProvider>
       </div>
     </div>

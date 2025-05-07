@@ -4,13 +4,14 @@ import { useState, useCallback, useRef } from "react";
 import WindowHeader from "./window-header";
 import ResizeHandles from "./resize-handles";
 import { WINDOW_OFFSET_DETECTION } from "@/constant/window";
+import { Window } from "@/store/windowStore";
 
 interface WindowAppProps {
+  window: Window;
   constraintsRef: React.RefObject<HTMLDivElement> | null;
-  AppName: string;
 }
 
-function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
+function WindowApp({ constraintsRef, window }: WindowAppProps) {
   const draggableRef = useRef<HTMLDivElement>(null);
   const lastFrameRef = useRef<number>(null);
 
@@ -146,7 +147,7 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
         "absolute flex flex-col bg-background/95 rounded-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
       )}
     >
-      <WindowHeader AppName={AppName} />
+      <WindowHeader window={window} />
       <ResizeHandles
         isTouchingBounds={isTouchingBounds}
         handleResize={handleResize}

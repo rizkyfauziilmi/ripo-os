@@ -5,8 +5,11 @@ import bgImage from "./assets/wallpaper-1.png";
 import AppMenu from "./components/app-menu";
 import WindowApp from "./components/window/window-app";
 import { useRef } from "react";
+import useWindowStore from "./store/windowStore";
+import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
+  const { windows } = useWindowStore();
   const windowConstraintsRef = useRef<HTMLDivElement>(null!);
 
   return (
@@ -18,7 +21,25 @@ function App() {
         <div className="h-full flex flex-col w-full" ref={windowConstraintsRef}>
           <Topbar />
           <Dock />
-          <WindowApp AppName="My App" constraintsRef={windowConstraintsRef} />
+          <AnimatePresence>
+            {windows.map(
+              (window) =>
+                window.isOpen && (
+                  <motion.div
+                    key={window.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.1 }}
+                  >
+                    <WindowApp
+                      window={window}
+                      constraintsRef={windowConstraintsRef}
+                    />
+                  </motion.div>
+                ),
+            )}
+          </AnimatePresence>
         </div>
       </div>
       <AppMenu />
