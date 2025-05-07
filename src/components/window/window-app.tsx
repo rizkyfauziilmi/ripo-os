@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import WindowHeader from "./window-header";
 
 interface WindowAppProps {
@@ -9,8 +9,17 @@ interface WindowAppProps {
 }
 
 function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
+  const draggableRef = useRef<HTMLDivElement>(null);
+  const lastFrameRef = useRef<number>(null);
+
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const [resizing, setResizing] = useState(false);
+  const [isTouchingBounds, setIsTouchingBounds] = useState({
+    top: false,
+    right: false,
+    bottom: false,
+    left: false,
+  });
 
   const handleResize = useCallback(
     (e: React.MouseEvent, direction: string) => {
@@ -58,14 +67,46 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
     [dimensions],
   );
 
+  const handleDrag = () => {
+    if (!draggableRef.current || !constraintsRef?.current) return;
+
+    if (lastFrameRef.current) {
+      cancelAnimationFrame(lastFrameRef.current);
+    }
+
+    lastFrameRef.current = requestAnimationFrame(() => {
+      const draggableRect = draggableRef.current!.getBoundingClientRect();
+      const constraintsRect = constraintsRef.current!.getBoundingClientRect();
+
+      const isTouchingLeft = draggableRect.left <= constraintsRect.left;
+      const isTouchingRight = draggableRect.right >= constraintsRect.right;
+      const isTouchingTop = draggableRect.top <= constraintsRect.top;
+      const isTouchingBottom = draggableRect.bottom >= constraintsRect.bottom;
+
+      setIsTouchingBounds((prev) => {
+        const next = {
+          top: isTouchingTop,
+          right: isTouchingRight,
+          bottom: isTouchingBottom,
+          left: isTouchingLeft,
+        };
+
+        // Hanya update state jika berubah
+        return JSON.stringify(prev) !== JSON.stringify(next) ? next : prev;
+      });
+    });
+  };
+
   if (!constraintsRef) return null;
 
   return (
     <motion.div
+      ref={draggableRef}
       drag={!resizing}
       dragConstraints={constraintsRef}
       dragElastic={0}
       dragMomentum={false}
+      onDrag={handleDrag}
       style={{
         width: `${dimensions.width}px`,
         height: `${dimensions.height}px`,
@@ -78,35 +119,67 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
 
       {/* Resize handles */}
       <div
-        className="absolute -bottom-4 -right-4 w-6 h-6 cursor-se-resize"
+        className={cn(
+          isTouchingBounds.bottom || isTouchingBounds.right
+            ? "bottom-0 right-0"
+            : "-bottom-4 -right-4",
+          "absolute w-6 h-6 cursor-se-resize bg-red-500",
+        )}
         onMouseDown={(e) => handleResize(e, "se")}
       />
       <div
-        className="absolute -bottom-4 -left-4 w-6 h-6 cursor-sw-resize"
+        className={cn(
+          isTouchingBounds.bottom || isTouchingBounds.left
+            ? "bottom-0 left-0"
+            : "-bottom-4 -left-4",
+          "absolute w-6 h-6 cursor-sw-resize",
+        )}
         onMouseDown={(e) => handleResize(e, "sw")}
       />
       <div
-        className="absolute -top-4 -right-4 w-6 h-6 cursor-ne-resize"
+        className={cn(
+          isTouchingBounds.top || isTouchingBounds.right
+            ? "top-0 right-0"
+            : "-top-4 -right-4",
+          "absolute w-6 h-6 cursor-ne-resize",
+        )}
         onMouseDown={(e) => handleResize(e, "ne")}
       />
       <div
-        className="absolute -top-4 -left-4 w-6 h-6 cursor-nw-resize"
+        className={cn(
+          isTouchingBounds.top || isTouchingBounds.left
+            ? "top-0 left-0"
+            : "-top-4 -left-4",
+          "absolute w-6 h-6 cursor-nw-resize",
+        )}
         onMouseDown={(e) => handleResize(e, "nw")}
       />
       <div
-        className="absolute -bottom-3 left-6 right-6 h-2 cursor-s-resize"
+        className={cn(
+          isTouchingBounds.bottom ? "bottom-0" : "-bottom-3",
+          "absolute left-6 right-6 h-2 cursor-s-resize",
+        )}
         onMouseDown={(e) => handleResize(e, "s")}
       />
       <div
-        className="absolute -top-3 left-6 right-6 h-2 cursor-n-resize"
+        className={cn(
+          isTouchingBounds.top ? "top-0" : "-top-3",
+          "absolute left-6 right-6 h-2 cursor-n-resize",
+        )}
         onMouseDown={(e) => handleResize(e, "n")}
       />
       <div
-        className="absolute -right-3 top-6 bottom-6 w-2 cursor-e-resize"
+        className={cn(
+          isTouchingBounds.right ? "right-0" : "-right-3",
+          "absolute top-6 bottom-6 w-2 cursor-e-resize",
+        )}
         onMouseDown={(e) => handleResize(e, "e")}
       />
       <div
-        className="absolute -left-3 top-6 bottom-6 w-2 cursor-w-resize"
+        className={cn(
+          isTouchingBounds.left ? "left-0" : "-left-3",
+          "absolute top-6 bottom-6 w-2 cursor-w-resize",
+        )}
         onMouseDown={(e) => handleResize(e, "w")}
       />
     </motion.div>
