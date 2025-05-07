@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useState, useCallback, useRef } from "react";
 import WindowHeader from "./window-header";
+import ResizeHandles from "./resize-handles";
+import { WINDOW_OFFSET_DETECTION } from "@/constant/window";
 
 interface WindowAppProps {
   constraintsRef: React.RefObject<HTMLDivElement> | null;
@@ -46,27 +48,47 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
         if (direction.includes("e")) {
           newWidth = Math.min(
             startWidth + (moveEvent.clientX - startX),
-            Math.min(constraintsRect.right - draggableRect.left, maxWidth)
+            Math.min(constraintsRect.right - draggableRect.left, maxWidth),
           );
         }
         if (direction.includes("w")) {
           newWidth = Math.min(
             startWidth - (moveEvent.clientX - startX),
-            Math.min(draggableRect.right - constraintsRect.left, maxWidth)
+            Math.min(draggableRect.right - constraintsRect.left, maxWidth),
           );
         }
         if (direction.includes("s")) {
           newHeight = Math.min(
             startHeight + (moveEvent.clientY - startY),
-            Math.min(constraintsRect.bottom - draggableRect.top, maxHeight)
+            Math.min(constraintsRect.bottom - draggableRect.top, maxHeight),
           );
         }
         if (direction.includes("n")) {
           newHeight = Math.min(
             startHeight - (moveEvent.clientY - startY),
-            Math.min(draggableRect.bottom - constraintsRect.top, maxHeight)
+            Math.min(draggableRect.bottom - constraintsRect.top, maxHeight),
           );
         }
+
+        const nextBounds = {
+          top:
+            draggableRect.top <= constraintsRect.top + WINDOW_OFFSET_DETECTION,
+          right:
+            draggableRect.right >=
+            constraintsRect.right - WINDOW_OFFSET_DETECTION,
+          bottom:
+            draggableRect.bottom >=
+            constraintsRect.bottom - WINDOW_OFFSET_DETECTION,
+          left:
+            draggableRect.left <=
+            constraintsRect.left + WINDOW_OFFSET_DETECTION,
+        };
+
+        setIsTouchingBounds((prev) =>
+          JSON.stringify(prev) !== JSON.stringify(nextBounds)
+            ? nextBounds
+            : prev,
+        );
 
         setDimensions({
           width: Math.max(100, newWidth),
@@ -98,10 +120,15 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
       const draggableRect = draggableRef.current!.getBoundingClientRect();
       const constraintsRect = constraintsRef.current!.getBoundingClientRect();
 
-      const isTouchingLeft = draggableRect.left <= constraintsRect.left;
-      const isTouchingRight = draggableRect.right >= constraintsRect.right;
-      const isTouchingTop = draggableRect.top <= constraintsRect.top;
-      const isTouchingBottom = draggableRect.bottom >= constraintsRect.bottom;
+      const isTouchingLeft =
+        draggableRect.left <= constraintsRect.left + WINDOW_OFFSET_DETECTION;
+      const isTouchingRight =
+        draggableRect.right >= constraintsRect.right - WINDOW_OFFSET_DETECTION;
+      const isTouchingTop =
+        draggableRect.top <= constraintsRect.top + WINDOW_OFFSET_DETECTION;
+      const isTouchingBottom =
+        draggableRect.bottom >=
+        constraintsRect.bottom - WINDOW_OFFSET_DETECTION;
 
       setIsTouchingBounds((prev) => {
         const next = {
@@ -142,88 +169,6 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
         handleResize={handleResize}
       />
     </motion.div>
-  );
-}
-
-function ResizeHandles({
-  isTouchingBounds,
-  handleResize,
-}: {
-  isTouchingBounds: {
-    top: boolean;
-    right: boolean;
-    bottom: boolean;
-    left: boolean;
-  };
-  handleResize: (e: React.MouseEvent, direction: string) => void;
-}) {
-  return (
-    <>
-      <div
-        className={cn(
-          isTouchingBounds.bottom || isTouchingBounds.right
-            ? "bottom-0 right-0"
-            : "-bottom-4 -right-4",
-          "absolute w-6 h-6 cursor-se-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "se")}
-      />
-      <div
-        className={cn(
-          isTouchingBounds.bottom || isTouchingBounds.left
-            ? "bottom-0 left-0"
-            : "-bottom-4 -left-4",
-          "absolute w-6 h-6 cursor-sw-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "sw")}
-      />
-      <div
-        className={cn(
-          isTouchingBounds.top || isTouchingBounds.right
-            ? "top-0 right-0"
-            : "-top-4 -right-4",
-          "absolute w-6 h-6 cursor-ne-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "ne")}
-      />
-      <div
-        className={cn(
-          isTouchingBounds.top || isTouchingBounds.left
-            ? "top-0 left-0"
-            : "-top-4 -left-4",
-          "absolute w-6 h-6 cursor-nw-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "nw")}
-      />
-      <div
-        className={cn(
-          isTouchingBounds.bottom ? "bottom-0" : "-bottom-3",
-          "absolute left-6 right-6 h-2 cursor-s-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "s")}
-      />
-      <div
-        className={cn(
-          isTouchingBounds.top ? "top-0" : "-top-3",
-          "absolute left-6 right-6 h-2 cursor-n-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "n")}
-      />
-      <div
-        className={cn(
-          isTouchingBounds.right ? "right-0" : "-right-3",
-          "absolute top-6 bottom-6 w-2 cursor-e-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "e")}
-      />
-      <div
-        className={cn(
-          isTouchingBounds.left ? "left-0" : "-left-3",
-          "absolute top-6 bottom-6 w-2 cursor-w-resize",
-        )}
-        onMouseDown={(e) => handleResize(e, "w")}
-      />
-    </>
   );
 }
 
