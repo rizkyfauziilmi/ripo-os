@@ -40,28 +40,31 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
         const constraintsRect = constraintsRef.current.getBoundingClientRect();
         const draggableRect = draggableRef.current.getBoundingClientRect();
 
+        const maxWidth = constraintsRect.width;
+        const maxHeight = constraintsRect.height;
+
         if (direction.includes("e")) {
           newWidth = Math.min(
             startWidth + (moveEvent.clientX - startX),
-            constraintsRect.right - draggableRect.left,
+            Math.min(constraintsRect.right - draggableRect.left, maxWidth)
           );
         }
         if (direction.includes("w")) {
           newWidth = Math.min(
             startWidth - (moveEvent.clientX - startX),
-            draggableRect.right - constraintsRect.left,
+            Math.min(draggableRect.right - constraintsRect.left, maxWidth)
           );
         }
         if (direction.includes("s")) {
           newHeight = Math.min(
             startHeight + (moveEvent.clientY - startY),
-            constraintsRect.bottom - draggableRect.top,
+            Math.min(constraintsRect.bottom - draggableRect.top, maxHeight)
           );
         }
         if (direction.includes("n")) {
           newHeight = Math.min(
             startHeight - (moveEvent.clientY - startY),
-            draggableRect.bottom - constraintsRect.top,
+            Math.min(draggableRect.bottom - constraintsRect.top, maxHeight)
           );
         }
 
@@ -134,7 +137,28 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
     >
       <WindowHeader AppName={AppName} />
 
-      {/* Resize handles */}
+      <ResizeHandles
+        isTouchingBounds={isTouchingBounds}
+        handleResize={handleResize}
+      />
+    </motion.div>
+  );
+}
+
+function ResizeHandles({
+  isTouchingBounds,
+  handleResize,
+}: {
+  isTouchingBounds: {
+    top: boolean;
+    right: boolean;
+    bottom: boolean;
+    left: boolean;
+  };
+  handleResize: (e: React.MouseEvent, direction: string) => void;
+}) {
+  return (
+    <>
       <div
         className={cn(
           isTouchingBounds.bottom || isTouchingBounds.right
@@ -199,7 +223,7 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
         )}
         onMouseDown={(e) => handleResize(e, "w")}
       />
-    </motion.div>
+    </>
   );
 }
 
