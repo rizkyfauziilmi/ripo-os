@@ -5,6 +5,7 @@ export interface Window {
   id: string;
   isOpen: boolean;
   appName: string;
+  dimensions: { width: number; height: number };
 }
 
 interface WindowState {
@@ -13,6 +14,7 @@ interface WindowState {
   minimizeWindow: (id: string) => void;
   unMinimizeWindow: (id: string) => void;
   closeWindow: (id: string) => void;
+  updateWindow: (id: string, updates: Partial<Omit<Window, "id">>) => void;
 }
 
 export const useWindowStore = create<WindowState>((set) => ({
@@ -42,7 +44,15 @@ export const useWindowStore = create<WindowState>((set) => ({
       } else {
         const id = crypto.randomUUID();
         return {
-          windows: [...state.windows, { id, isOpen: true, appName }],
+          windows: [
+            ...state.windows,
+            {
+              id,
+              isOpen: true,
+              appName,
+              dimensions: { width: 800, height: 600 },
+            },
+          ],
         };
       }
     });
@@ -61,6 +71,12 @@ export const useWindowStore = create<WindowState>((set) => ({
     set((state) => ({
       windows: state.windows.map((window) =>
         window.id === id ? { ...window, isOpen: true } : window,
+      ),
+    })),
+  updateWindow: (id: string, updates: Partial<Omit<Window, "id">>) =>
+    set((state) => ({
+      windows: state.windows.map((window) =>
+        window.id === id ? { ...window, ...updates } : window,
       ),
     })),
 }));

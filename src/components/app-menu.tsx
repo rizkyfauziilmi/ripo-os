@@ -89,7 +89,7 @@ function AppMenu() {
         <CommandGroup heading="Commands">
           <CommandItem onSelect={() => handleSelect(() => window.close())}>
             <PowerOff />
-            <span>Power Off</span>
+            <span>Shutdown</span>
           </CommandItem>
           <CommandItem
             onSelect={() => handleSelect(() => window.location.reload())}
