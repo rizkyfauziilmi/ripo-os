@@ -1,12 +1,14 @@
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useState, useCallback } from "react";
+import WindowHeader from "./window-header";
 
 interface WindowAppProps {
   constraintsRef: React.RefObject<HTMLDivElement> | null;
+  AppName: string;
 }
 
-function WindowApp({ constraintsRef }: WindowAppProps) {
+function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const [resizing, setResizing] = useState(false);
 
@@ -69,42 +71,42 @@ function WindowApp({ constraintsRef }: WindowAppProps) {
         height: `${dimensions.height}px`,
       }}
       className={cn(
-        "absolute bg-background/95 rounded-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+        "absolute flex flex-col bg-background/95 rounded-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
       )}
     >
-      <div className="p-2">Window</div>
+      <WindowHeader AppName={AppName} />
 
       {/* Resize handles */}
       <div
-        className="absolute bottom-0 right-0 w-6 h-6 cursor-se-resize"
+        className="absolute -bottom-4 -right-4 w-6 h-6 cursor-se-resize"
         onMouseDown={(e) => handleResize(e, "se")}
       />
       <div
-        className="absolute bottom-0 left-0 w-6 h-6 cursor-sw-resize"
+        className="absolute -bottom-4 -left-4 w-6 h-6 cursor-sw-resize"
         onMouseDown={(e) => handleResize(e, "sw")}
       />
       <div
-        className="absolute top-0 right-0 w-6 h-6 cursor-ne-resize"
+        className="absolute -top-4 -right-4 w-6 h-6 cursor-ne-resize"
         onMouseDown={(e) => handleResize(e, "ne")}
       />
       <div
-        className="absolute top-0 left-0 w-6 h-6 cursor-nw-resize"
+        className="absolute -top-4 -left-4 w-6 h-6 cursor-nw-resize"
         onMouseDown={(e) => handleResize(e, "nw")}
       />
       <div
-        className="absolute bottom-0 left-6 right-6 h-2 cursor-s-resize"
+        className="absolute -bottom-3 left-6 right-6 h-2 cursor-s-resize"
         onMouseDown={(e) => handleResize(e, "s")}
       />
       <div
-        className="absolute top-0 left-6 right-6 h-2 cursor-n-resize"
+        className="absolute -top-3 left-6 right-6 h-2 cursor-n-resize"
         onMouseDown={(e) => handleResize(e, "n")}
       />
       <div
-        className="absolute right-0 top-6 bottom-6 w-2 cursor-e-resize"
+        className="absolute -right-3 top-6 bottom-6 w-2 cursor-e-resize"
         onMouseDown={(e) => handleResize(e, "e")}
       />
       <div
-        className="absolute left-0 top-6 bottom-6 w-2 cursor-w-resize"
+        className="absolute -left-3 top-6 bottom-6 w-2 cursor-w-resize"
         onMouseDown={(e) => handleResize(e, "w")}
       />
     </motion.div>

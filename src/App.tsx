@@ -12,13 +12,13 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div
-        className="bg-cover bg-muted h-screen w-screen"
+        className="bg-cover h-screen w-screen overflow-hidden"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="h-full flex flex-col" ref={windowConstraintsRef}>
+        <div className="h-full flex flex-col w-full" ref={windowConstraintsRef}>
           <Topbar />
           <Dock />
-          <WindowApp constraintsRef={windowConstraintsRef} />
+          <WindowApp AppName="My App" constraintsRef={windowConstraintsRef} />
         </div>
       </div>
       <AppMenu />
