@@ -140,7 +140,7 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
           isTouchingBounds.bottom || isTouchingBounds.right
             ? "bottom-0 right-0"
             : "-bottom-4 -right-4",
-          "absolute w-6 h-6 cursor-se-resize bg-red-500",
+          "absolute w-6 h-6 cursor-se-resize",
         )}
         onMouseDown={(e) => handleResize(e, "se")}
       />
