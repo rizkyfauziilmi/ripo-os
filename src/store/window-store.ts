@@ -29,6 +29,7 @@ export const useWindowStore = create<WindowState>((set) => ({
               "You can only have one instance of this app running at a time.",
             position: "top-center",
             style: { marginTop: "30px" },
+            closeButton: true,
           });
         }
         return {
