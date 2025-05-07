@@ -35,17 +35,34 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
         let newWidth = startWidth;
         let newHeight = startHeight;
 
+        if (!constraintsRef?.current || !draggableRef.current) return;
+
+        const constraintsRect = constraintsRef.current.getBoundingClientRect();
+        const draggableRect = draggableRef.current.getBoundingClientRect();
+
         if (direction.includes("e")) {
-          newWidth = startWidth + (moveEvent.clientX - startX);
+          newWidth = Math.min(
+            startWidth + (moveEvent.clientX - startX),
+            constraintsRect.right - draggableRect.left,
+          );
         }
         if (direction.includes("w")) {
-          newWidth = startWidth - (moveEvent.clientX - startX);
+          newWidth = Math.min(
+            startWidth - (moveEvent.clientX - startX),
+            draggableRect.right - constraintsRect.left,
+          );
         }
         if (direction.includes("s")) {
-          newHeight = startHeight + (moveEvent.clientY - startY);
+          newHeight = Math.min(
+            startHeight + (moveEvent.clientY - startY),
+            constraintsRect.bottom - draggableRect.top,
+          );
         }
         if (direction.includes("n")) {
-          newHeight = startHeight - (moveEvent.clientY - startY);
+          newHeight = Math.min(
+            startHeight - (moveEvent.clientY - startY),
+            draggableRect.bottom - constraintsRect.top,
+          );
         }
 
         setDimensions({
@@ -64,7 +81,7 @@ function WindowApp({ constraintsRef, AppName }: WindowAppProps) {
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
     },
-    [dimensions],
+    [constraintsRef, dimensions],
   );
 
   const handleDrag = () => {
