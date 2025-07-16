@@ -1,1 +1,1 @@
-export const SIDE_OFFSET = 15;
+export const SIDE_OFFSET = 15

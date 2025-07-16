@@ -1,14 +1,14 @@
-import Topbar from "./components/topbar/topbar";
-import { ThemeProvider } from "./components/theme-provider";
-import Dock from "./components/dock/dock";
-import AppMenu from "./components/app-menu";
-import React, { useRef } from "react";
-import { Toaster } from "./components/ui/sonner";
-import { TooltipProvider } from "./components/ui/tooltip";
-const Windows = React.lazy(() => import("./components/window/windows"));
+import Topbar from './components/topbar/topbar'
+import { ThemeProvider } from './components/theme-provider'
+import Dock from './components/dock/dock'
+import AppMenu from './components/app-menu'
+import React, { useRef } from 'react'
+import { Toaster } from './components/ui/sonner'
+import { TooltipProvider } from './components/ui/tooltip'
+const Windows = React.lazy(() => import('./components/window/windows'))
 
 function App() {
-  const windowConstraintsRef = useRef<HTMLDivElement>(null!);
+  const windowConstraintsRef = useRef<HTMLDivElement>(null!)
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -16,14 +16,10 @@ function App() {
         <div
           className="bg-cover h-screen w-screen overflow-hidden"
           style={{
-            backgroundImage:
-              "url(https://w.wallhaven.cc/full/3l/wallhaven-3lxdy3.jpg)",
+            backgroundImage: 'url(https://w.wallhaven.cc/full/3l/wallhaven-3lxdy3.jpg)',
           }}
         >
-          <div
-            className="h-full flex flex-col w-full"
-            ref={windowConstraintsRef}
-          >
+          <div className="h-full flex flex-col w-full" ref={windowConstraintsRef}>
             <Topbar />
             <Dock />
             <Windows constraintsRef={windowConstraintsRef} />
@@ -33,7 +29,7 @@ function App() {
         <Toaster />
       </TooltipProvider>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App

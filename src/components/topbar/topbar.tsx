@@ -1,6 +1,6 @@
-import LeftTopbar from "./left-topbar";
-import MiddleTopbar from "./middle-topbar";
-import RightTopbar from "./right-topbar";
+import LeftTopbar from './left-topbar'
+import MiddleTopbar from './middle-topbar'
+import RightTopbar from './right-topbar'
 
 function Topbar() {
   return (
@@ -9,7 +9,7 @@ function Topbar() {
       <MiddleTopbar />
       <RightTopbar />
     </div>
-  );
+  )
 }
 
-export default Topbar;
+export default Topbar

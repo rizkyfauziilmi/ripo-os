@@ -1,6 +1,6 @@
-import VolumeMixer from "./volume-mixer";
-import UserAvatar from "./user-avatar";
-import UserInfo from "./user-info";
+import VolumeMixer from './volume-mixer'
+import UserAvatar from './user-avatar'
+import UserInfo from './user-info'
 
 function RightSheetBento() {
   return (
@@ -11,7 +11,7 @@ function RightSheetBento() {
       </div>
       <VolumeMixer />
     </div>
-  );
+  )
 }
 
-export default RightSheetBento;
+export default RightSheetBento

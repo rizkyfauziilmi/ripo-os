@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react'
 const Spotify = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 256 256"
@@ -13,5 +13,5 @@ const Spotify = (props: SVGProps<SVGSVGElement>) => (
       fill="#1ED760"
     />
   </svg>
-);
-export default Spotify;
+)
+export default Spotify

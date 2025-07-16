@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react'
 const GitHub = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="1em"
@@ -16,5 +16,5 @@ const GitHub = (props: SVGProps<SVGSVGElement>) => (
       fill="#ffff"
     />
   </svg>
-);
-export default GitHub;
+)
+export default GitHub

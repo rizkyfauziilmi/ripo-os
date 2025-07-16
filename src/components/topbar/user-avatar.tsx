@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
 function UserAvatar() {
   return (
@@ -6,7 +6,7 @@ function UserAvatar() {
       <AvatarImage src="https://github.com/shadcn.png" />
       <AvatarFallback isRoundedSquare>CN</AvatarFallback>
     </Avatar>
-  );
+  )
 }
 
-export default UserAvatar;
+export default UserAvatar

@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react'
 const Alacritty = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -8,9 +8,9 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 64 64"
     xmlSpace="preserve"
     style={{
-      clipRule: "evenodd",
-      fillRule: "evenodd",
-      strokeLinejoin: "round",
+      clipRule: 'evenodd',
+      fillRule: 'evenodd',
+      strokeLinejoin: 'round',
       strokeMiterlimit: 1.41420996,
     }}
     id="svg3967"
@@ -29,7 +29,7 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
         <stop
           offset={0}
           style={{
-            stopColor: "#ec2802",
+            stopColor: '#ec2802',
             stopOpacity: 1,
           }}
           id="stop926"
@@ -37,7 +37,7 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
         <stop
           offset={1}
           style={{
-            stopColor: "#fcb200",
+            stopColor: '#fcb200',
             stopOpacity: 1,
           }}
           id="stop928"
@@ -46,7 +46,7 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
       <linearGradient id="linearGradient5362">
         <stop
           style={{
-            stopColor: "#aaaaaa",
+            stopColor: '#aaaaaa',
             stopOpacity: 1,
           }}
           offset={0}
@@ -68,20 +68,20 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
           id="path3641"
           d="M 14.813062,26.75 19,15.945 23.186938,26.75 19,43.25 Z"
           style={{
-            fill: "none",
-            stroke: "#000000",
+            fill: 'none',
+            stroke: '#000000',
             strokeWidth: 0.03779528,
-            strokeLinecap: "butt",
-            strokeLinejoin: "miter",
+            strokeLinecap: 'butt',
+            strokeLinejoin: 'miter',
             strokeMiterlimit: 1.41420996,
-            strokeDasharray: "none",
+            strokeDasharray: 'none',
             strokeOpacity: 1,
           }}
         />
       </clipPath>
       <filter
         style={{
-          colorInterpolation: "sRGB",
+          colorInterpolation: 'sRGB',
         }}
         id="filter1378"
         x={-0.096199476}
@@ -95,7 +95,7 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
     <g
       id="layer1"
       style={{
-        display: "inline",
+        display: 'inline',
       }}
       transform="translate(-16,35.820639)"
     >
@@ -105,34 +105,34 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
           id="path5352"
           d="M 43.566236,2.9721345 42.175119,6.3426951 C 45.913195,17.853356 45.913195,17.853356 48,27.894557 50.086805,17.853356 50.086805,17.853356 53.824881,6.3426951 L 52.433764,2.9721345 48,-7.7705098 Z"
           style={{
-            clipRule: "evenodd",
-            fill: "#069efe",
+            clipRule: 'evenodd',
+            fill: '#069efe',
             fillOpacity: 1,
-            fillRule: "evenodd",
-            stroke: "none",
+            fillRule: 'evenodd',
+            stroke: 'none',
             strokeWidth: 0.26960364,
-            strokeLinecap: "butt",
-            strokeLinejoin: "miter",
+            strokeLinecap: 'butt',
+            strokeLinejoin: 'miter',
             strokeMiterlimit: 1.41420996,
-            strokeDasharray: "none",
+            strokeDasharray: 'none',
             strokeOpacity: 0.4330357,
-            paintOrder: "stroke markers fill",
+            paintOrder: 'stroke markers fill',
           }}
         />
         <path
           id="path5336"
           d="m 43.09342,-32.960595 h 9.81316 l 21.729148,53.92852 H 65.523505 L 48,-20.221038 30.476495,20.967925 h -9.112223 z"
           style={{
-            clipRule: "evenodd",
-            fill: "url(#linearGradient11006)",
+            clipRule: 'evenodd',
+            fill: 'url(#linearGradient11006)',
             fillOpacity: 1,
-            fillRule: "evenodd",
-            stroke: "none",
+            fillRule: 'evenodd',
+            stroke: 'none',
             strokeWidth: 0,
-            strokeLinecap: "butt",
-            strokeLinejoin: "miter",
+            strokeLinecap: 'butt',
+            strokeLinejoin: 'miter',
             strokeMiterlimit: 1.41420996,
-            strokeDasharray: "none",
+            strokeDasharray: 'none',
             strokeOpacity: 1,
           }}
         />
@@ -140,21 +140,21 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
           transform="matrix(1.3912031,0,0,1.3379446,21.567141,-29.104025)"
           clipPath="url(#clipPath3639)"
           style={{
-            clipRule: "evenodd",
-            display: "inline",
-            fill: "#ffffff",
+            clipRule: 'evenodd',
+            display: 'inline',
+            fill: '#ffffff',
             fillOpacity: 1,
-            fillRule: "evenodd",
-            stroke: "none",
+            fillRule: 'evenodd',
+            stroke: 'none',
             strokeWidth: 0,
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
             strokeMiterlimit: 0,
-            strokeDasharray: "none",
+            strokeDasharray: 'none',
             strokeDashoffset: 0,
             strokeOpacity: 1,
-            paintOrder: "markers fill stroke",
-            filter: "url(#filter1378)",
+            paintOrder: 'markers fill stroke',
+            filter: 'url(#filter1378)',
           }}
           d="M 19,32.395 31.5,0 6.5,0.13313911 Z"
           id="path9580"
@@ -162,5 +162,5 @@ const Alacritty = (props: SVGProps<SVGSVGElement>) => (
       </g>
     </g>
   </svg>
-);
-export default Alacritty;
+)
+export default Alacritty

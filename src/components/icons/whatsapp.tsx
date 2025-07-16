@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react'
 const WhatsApp = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 256 259"
@@ -17,5 +17,5 @@ const WhatsApp = (props: SVGProps<SVGSVGElement>) => (
       fill="#FFF"
     />
   </svg>
-);
-export default WhatsApp;
+)
+export default WhatsApp

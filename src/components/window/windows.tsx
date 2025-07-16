@@ -1,14 +1,14 @@
-import useWindowStore from "@/store/window-store";
-import { AnimatePresence, motion } from "motion/react";
-import React from "react";
-const WindowApp = React.lazy(() => import("./window-app"));
+import useWindowStore from '@/store/window-store'
+import { AnimatePresence, motion } from 'motion/react'
+import React from 'react'
+const WindowApp = React.lazy(() => import('./window-app'))
 
 interface WindowsProps {
-  constraintsRef: React.RefObject<HTMLDivElement>;
+  constraintsRef: React.RefObject<HTMLDivElement>
 }
 
 function Windows({ constraintsRef }: WindowsProps) {
-  const { windows } = useWindowStore();
+  const { windows } = useWindowStore()
 
   return (
     <AnimatePresence>
@@ -24,10 +24,10 @@ function Windows({ constraintsRef }: WindowsProps) {
             >
               <WindowApp window={window} constraintsRef={constraintsRef} />
             </motion.div>
-          ),
+          )
       )}
     </AnimatePresence>
-  );
+  )
 }
 
-export default Windows;
+export default Windows
