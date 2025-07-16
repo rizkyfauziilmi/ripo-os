@@ -6,7 +6,7 @@ function Workspace() {
       <div className="border border-primary size-1.5 rounded-full"></div>
       <div className="border border-primary size-1.5 rounded-full"></div>
     </div>
-  );
+  )
 }
 
-export default Workspace;
+export default Workspace

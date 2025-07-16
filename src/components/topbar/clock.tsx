@@ -1,23 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import { ONE_SECOND } from "@/constant/time";
-import CalendarPopover from "./calendar-popover";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { ONE_SECOND } from '@/constant/time'
+import CalendarPopover from './calendar-popover'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 
 function Clock() {
-  const [nowDate, setNowDate] = useState<Date>(new Date());
+  const [nowDate, setNowDate] = useState<Date>(new Date())
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setNowDate(new Date());
-    }, ONE_SECOND);
+      setNowDate(new Date())
+    }, ONE_SECOND)
 
-    return () => clearInterval(intervalId); // Clear interval on unmount
-  }, []);
+    return () => clearInterval(intervalId) // Clear interval on unmount
+  }, [])
 
   return (
     <Popover>
@@ -32,7 +28,7 @@ function Clock() {
         <CalendarPopover />
       </PopoverContent>
     </Popover>
-  );
+  )
 }
 
-export default Clock;
+export default Clock

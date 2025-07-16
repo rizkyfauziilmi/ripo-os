@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react'
 const ZenBrowser = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 64 64"
@@ -27,5 +27,5 @@ const ZenBrowser = (props: SVGProps<SVGSVGElement>) => (
       clipRule="evenodd"
     />
   </svg>
-);
-export default ZenBrowser;
+)
+export default ZenBrowser

@@ -1,146 +1,134 @@
-import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
-import { useState, useCallback, useRef, memo } from "react";
-import React from "react";
-import WindowHeader from "./window-header";
-import ResizeHandles from "./resize-handles";
-import {
-  WINDOW_MIN_HEIGHT,
-  WINDOW_MIN_WIDTH,
-  WINDOW_OFFSET_DETECTION,
-} from "@/constant/window";
-import { Window } from "@/store/window-store";
+import { cn } from '@/lib/utils'
+import { motion } from 'motion/react'
+import { useState, useCallback, useRef, memo } from 'react'
+import React from 'react'
+import WindowHeader from './window-header'
+import ResizeHandles from './resize-handles'
+import { WINDOW_MIN_HEIGHT, WINDOW_MIN_WIDTH, WINDOW_OFFSET_DETECTION } from '@/constant/window'
+import { Window } from '@/store/window-store'
 
 interface WindowAppProps {
-  window: Window;
-  constraintsRef: React.RefObject<HTMLDivElement> | null;
+  window: Window
+  constraintsRef: React.RefObject<HTMLDivElement> | null
 }
 
 function WindowApp({ constraintsRef, window }: WindowAppProps) {
-  const draggableRef = useRef<HTMLDivElement>(null);
-  const lastFrameRef = useRef<number>(null);
+  const draggableRef = useRef<HTMLDivElement>(null)
+  const lastFrameRef = useRef<number>(null)
 
   const [dimensions, setDimensions] = useState({
     width: 800,
     height: 600,
-  });
-  const [resizing, setResizing] = useState(false);
+  })
+  const [resizing, setResizing] = useState(false)
   const [isTouchingBounds, setIsTouchingBounds] = useState({
     top: false,
     right: false,
     bottom: false,
     left: false,
-  });
+  })
 
-  const updateBoundsState = useCallback(
-    (draggableRect: DOMRect, constraintsRect: DOMRect) => {
-      const nextBounds = {
-        top: draggableRect.top <= constraintsRect.top + WINDOW_OFFSET_DETECTION,
-        right:
-          draggableRect.right >=
-          constraintsRect.right - WINDOW_OFFSET_DETECTION,
-        bottom:
-          draggableRect.bottom >=
-          constraintsRect.bottom - WINDOW_OFFSET_DETECTION,
-        left:
-          draggableRect.left <= constraintsRect.left + WINDOW_OFFSET_DETECTION,
-      };
+  const updateBoundsState = useCallback((draggableRect: DOMRect, constraintsRect: DOMRect) => {
+    const nextBounds = {
+      top: draggableRect.top <= constraintsRect.top + WINDOW_OFFSET_DETECTION,
+      right: draggableRect.right >= constraintsRect.right - WINDOW_OFFSET_DETECTION,
+      bottom: draggableRect.bottom >= constraintsRect.bottom - WINDOW_OFFSET_DETECTION,
+      left: draggableRect.left <= constraintsRect.left + WINDOW_OFFSET_DETECTION,
+    }
 
-      setIsTouchingBounds((prev) => {
-        if (JSON.stringify(prev) !== JSON.stringify(nextBounds)) {
-          if (lastFrameRef.current) {
-            cancelAnimationFrame(lastFrameRef.current);
-          }
-
-          lastFrameRef.current = requestAnimationFrame(() => {
-            setIsTouchingBounds(nextBounds);
-          });
+    setIsTouchingBounds((prev) => {
+      if (JSON.stringify(prev) !== JSON.stringify(nextBounds)) {
+        if (lastFrameRef.current) {
+          cancelAnimationFrame(lastFrameRef.current)
         }
-        return prev;
-      });
-    },
-    [],
-  );
+
+        lastFrameRef.current = requestAnimationFrame(() => {
+          setIsTouchingBounds(nextBounds)
+        })
+      }
+      return prev
+    })
+  }, [])
 
   const handleResize = useCallback(
     (e: React.MouseEvent, direction: string) => {
-      e.stopPropagation();
+      e.stopPropagation()
 
-      const startX = e.clientX;
-      const startY = e.clientY;
-      const { width: startWidth, height: startHeight } = dimensions;
+      const startX = e.clientX
+      const startY = e.clientY
+      const { width: startWidth, height: startHeight } = dimensions
 
       const onMouseMove = (moveEvent: MouseEvent) => {
-        moveEvent.preventDefault();
+        moveEvent.preventDefault()
 
-        if (!constraintsRef?.current || !draggableRef.current) return;
+        if (!constraintsRef?.current || !draggableRef.current) return
 
-        const constraintsRect = constraintsRef.current.getBoundingClientRect();
-        const draggableRect = draggableRef.current.getBoundingClientRect();
+        const constraintsRect = constraintsRef.current.getBoundingClientRect()
+        const draggableRect = draggableRef.current.getBoundingClientRect()
 
-        let newWidth = startWidth;
-        let newHeight = startHeight;
+        let newWidth = startWidth
+        let newHeight = startHeight
 
-        if (direction.includes("e")) {
+        if (direction.includes('e')) {
           newWidth = Math.min(
             startWidth + (moveEvent.clientX - startX),
-            constraintsRect.right - draggableRect.left,
-          );
+            constraintsRect.right - draggableRect.left
+          )
         }
-        if (direction.includes("w")) {
+        if (direction.includes('w')) {
           newWidth = Math.min(
             startWidth - (moveEvent.clientX - startX),
-            draggableRect.right - constraintsRect.left,
-          );
+            draggableRect.right - constraintsRect.left
+          )
         }
-        if (direction.includes("s")) {
+        if (direction.includes('s')) {
           newHeight = Math.min(
             startHeight + (moveEvent.clientY - startY),
-            constraintsRect.bottom - draggableRect.top,
-          );
+            constraintsRect.bottom - draggableRect.top
+          )
         }
-        if (direction.includes("n")) {
+        if (direction.includes('n')) {
           newHeight = Math.min(
             startHeight - (moveEvent.clientY - startY),
-            draggableRect.bottom - constraintsRect.top,
-          );
+            draggableRect.bottom - constraintsRect.top
+          )
         }
 
-        updateBoundsState(draggableRect, constraintsRect);
+        updateBoundsState(draggableRect, constraintsRect)
 
         if (lastFrameRef.current) {
-          clearTimeout(lastFrameRef.current);
+          clearTimeout(lastFrameRef.current)
         }
 
         setDimensions({
           width: Math.max(WINDOW_MIN_WIDTH, newWidth),
           height: Math.max(WINDOW_MIN_HEIGHT, newHeight),
-        });
-        setResizing(true);
-      };
+        })
+        setResizing(true)
+      }
 
       const onMouseUp = () => {
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseup", onMouseUp);
-        setResizing(false);
-      };
+        document.removeEventListener('mousemove', onMouseMove)
+        document.removeEventListener('mouseup', onMouseUp)
+        setResizing(false)
+      }
 
-      document.addEventListener("mousemove", onMouseMove);
-      document.addEventListener("mouseup", onMouseUp);
+      document.addEventListener('mousemove', onMouseMove)
+      document.addEventListener('mouseup', onMouseUp)
     },
-    [constraintsRef, dimensions, updateBoundsState],
-  );
+    [constraintsRef, dimensions, updateBoundsState]
+  )
 
   const handleDrag = useCallback(() => {
-    if (!draggableRef.current || !constraintsRef?.current) return;
+    if (!draggableRef.current || !constraintsRef?.current) return
 
-    const draggableRect = draggableRef.current.getBoundingClientRect();
-    const constraintsRect = constraintsRef.current.getBoundingClientRect();
+    const draggableRect = draggableRef.current.getBoundingClientRect()
+    const constraintsRect = constraintsRef.current.getBoundingClientRect()
 
-    updateBoundsState(draggableRect, constraintsRect);
-  }, [constraintsRef, updateBoundsState]);
+    updateBoundsState(draggableRect, constraintsRect)
+  }, [constraintsRef, updateBoundsState])
 
-  if (!constraintsRef) return null;
+  if (!constraintsRef) return null
 
   return (
     <motion.div
@@ -155,19 +143,16 @@ function WindowApp({ constraintsRef, window }: WindowAppProps) {
         height: `${dimensions.height}px`,
       }}
       className={cn(
-        "absolute flex flex-col bg-background/95 rounded-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+        'absolute flex flex-col bg-background/95 rounded-md top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
       )}
     >
       <MemoizedWindowHeader window={window} />
-      <MemoizedResizeHandles
-        isTouchingBounds={isTouchingBounds}
-        handleResize={handleResize}
-      />
+      <MemoizedResizeHandles isTouchingBounds={isTouchingBounds} handleResize={handleResize} />
     </motion.div>
-  );
+  )
 }
 
-const MemoizedWindowHeader = memo(WindowHeader);
-const MemoizedResizeHandles = memo(ResizeHandles);
+const MemoizedWindowHeader = memo(WindowHeader)
+const MemoizedResizeHandles = memo(ResizeHandles)
 
-export default WindowApp;
+export default WindowApp

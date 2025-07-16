@@ -1,12 +1,8 @@
-import { Power, Volume2, Wifi } from "lucide-react";
-import { Button } from "../ui/button";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import RightSheetBento from "./right-sheet-bento";
-import { SIDE_OFFSET } from "@/constant/style";
+import { Power, Volume2, Wifi } from 'lucide-react'
+import { Button } from '../ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import RightSheetBento from './right-sheet-bento'
+import { SIDE_OFFSET } from '@/constant/style'
 
 function RightTopbar() {
   return (
@@ -19,17 +15,12 @@ function RightTopbar() {
             <Power />
           </Button>
         </PopoverTrigger>
-        <PopoverContent
-          side="bottom"
-          className="m-0 p-2"
-          align="end"
-          sideOffset={SIDE_OFFSET}
-        >
+        <PopoverContent side="bottom" className="m-0 p-2" align="end" sideOffset={SIDE_OFFSET}>
           <RightSheetBento />
         </PopoverContent>
       </Popover>
     </div>
-  );
+  )
 }
 
-export default RightTopbar;
+export default RightTopbar

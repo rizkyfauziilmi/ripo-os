@@ -1,31 +1,23 @@
-import {
-  Sun,
-  SunDim,
-  SunMedium,
-  Volume2,
-  VolumeOff,
-  Volume,
-  Volume1,
-} from "lucide-react";
-import { Slider } from "../ui/slider";
-import { useState } from "react";
+import { Sun, SunDim, SunMedium, Volume2, VolumeOff, Volume, Volume1 } from 'lucide-react'
+import { Slider } from '../ui/slider'
+import { useState } from 'react'
 
 function VolumeMixer() {
-  const [volume, setVolume] = useState(33);
-  const [brightness, setBrightness] = useState(33);
+  const [volume, setVolume] = useState(33)
+  const [brightness, setBrightness] = useState(33)
 
   const getVolumeIcon = () => {
-    if (volume === 0) return <VolumeOff />;
-    if (volume > 0 && volume <= 30) return <Volume />;
-    if (volume > 30 && volume <= 60) return <Volume1 />;
-    return <Volume2 />;
-  };
+    if (volume === 0) return <VolumeOff />
+    if (volume > 0 && volume <= 30) return <Volume />
+    if (volume > 30 && volume <= 60) return <Volume1 />
+    return <Volume2 />
+  }
 
   const getBrightnessIcon = () => {
-    if (brightness === 0) return <SunDim />;
-    if (brightness > 0 && brightness <= 50) return <SunMedium />;
-    return <Sun />;
-  };
+    if (brightness === 0) return <SunDim />
+    if (brightness > 0 && brightness <= 50) return <SunMedium />
+    return <Sun />
+  }
 
   return (
     <div className="bg-muted/50 space-y-2 rounded-md p-2">
@@ -48,7 +40,7 @@ function VolumeMixer() {
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default VolumeMixer;
+export default VolumeMixer
